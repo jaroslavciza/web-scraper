@@ -14,17 +14,23 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2  # Klonování repozitáře do běžícího runneru
+      uses: actions/checkout@v3  # Klonování repozitáře do běžícího runneru
 
     - name: Log in to GitHub Container Registry
       run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
     - name: Build and push frontend Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository }}/frontend:latest ./frontend
+        docker build \
+        --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" \
+        --label "org.opencontainers.image.description=Docker container with Frontend NGINX" \ 
+        -t ghcr.io/${{ github.repository }}/frontend:latest ./frontend
         docker push ghcr.io/${{ github.repository }}/frontend:latest
 
     - name: Build and push backend Docker image
       run: |
-        docker build -t ghcr.io/${{ github.repository }}/backend:latest ./backend
+        docker build \
+        --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" \
+        --label "org.opencontainers.image.description=Docker container with Backend FastAPI" \ 
+        -t ghcr.io/${{ github.repository }}/backend:latest ./backend
         docker push ghcr.io/${{ github.repository }}/backend:latest
