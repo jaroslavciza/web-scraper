@@ -1,10 +1,23 @@
-import httpx
-
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from bs4 import BeautifulSoup
+import httpx
 
 
 app = FastAPI() # je postavený na async def takže už ho nemusím na async volání používat zvlášť
+
+# kvuli CORS
+origins = [
+    "http://127.0.0.1:5173",  # Vue.js Dev server
+    "http://localhost:5173",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/api/btc")
 async def scrape_google():
