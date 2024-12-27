@@ -10,7 +10,7 @@ app = FastAPI() # je postavený na async def takže už ho nemusím na async vol
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",  # Vue.js Dev server
-    "https://vue.ciza.eu",   # production IP
+    "https://webscraper.ciza.eu",   # production URL
 ]
 app.add_middleware(
     CORSMiddleware,
