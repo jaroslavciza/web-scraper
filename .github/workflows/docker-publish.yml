@@ -21,16 +21,10 @@ jobs:
 
     - name: Build and push frontend Docker image
       run: |
-        docker build \
-        --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" \
-        --label "org.opencontainers.image.description=Docker container with Frontend NGINX" \ 
-        -t ghcr.io/${{ github.repository }}/frontend:latest ./frontend
+        docker build -t ghcr.io/${{ github.repository }}/frontend:latest ./frontend --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" --label "org.opencontainers.image.description=Docker container with Frontend NGINX"
         docker push ghcr.io/${{ github.repository }}/frontend:latest
 
     - name: Build and push backend Docker image
       run: |
-        docker build \
-        --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" \
-        --label "org.opencontainers.image.description=Docker container with Backend FastAPI" \ 
-        -t ghcr.io/${{ github.repository }}/backend:latest ./backend
+        docker build -t ghcr.io/${{ github.repository }}/backend:latest ./backend --label "org.opencontainers.image.source=https://github.com/jaroslavciza/web-scraper" --label "org.opencontainers.image.description=Docker container with Backend FastAPI"         
         docker push ghcr.io/${{ github.repository }}/backend:latest
