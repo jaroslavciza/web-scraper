@@ -20,10 +20,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/test-cors")
-async def test_cors(request: Request):
-    return {"message": "CORS is working!", "origin": request.headers.get("Origin")}
-
 @app.get("/api/btc")
 async def scrape_google():
     # url = 'https://www.bitstamp.net/markets/btc/usd/'
