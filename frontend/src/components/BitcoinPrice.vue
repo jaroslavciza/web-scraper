@@ -7,7 +7,8 @@
 
     async function getBTCprice() {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/btc');
+            const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+            const response = await fetch(apiBaseUrl+'/api/btc');
             const data = await response.json();
             if (data.error) {
                 error.value = data.error;
