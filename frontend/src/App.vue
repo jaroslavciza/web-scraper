@@ -28,7 +28,7 @@
     }
 
     body, html, #app {
-        min-width: 100svh;
+        min-width: 100svw;
         min-height: 100svh;
     }
 
@@ -45,6 +45,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-height: calc(100vh - var(--topHeight));
+        min-height: calc(100svh - var(--topHeight));
     }
 </style>
